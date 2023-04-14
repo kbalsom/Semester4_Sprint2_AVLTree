@@ -1,5 +1,7 @@
 package keyin.org;
 
+import org.json.simple.JSONObject;
+
 public class BST {
 
     public static Node root;
@@ -119,5 +121,19 @@ public class BST {
             return search(root.left, value);
         }
         return search(root.right, value);
+    }
+
+    public JSONObject toJson(Node node) {
+        if (node == null) {
+            return null;
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("value", node.key);
+
+        json.put("left", toJson(node.left));
+        json.put("right", toJson(node.right));
+
+        return json;
     }
 }

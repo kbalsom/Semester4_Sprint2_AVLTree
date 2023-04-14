@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AVL avl = new AVL();
+        BST bst = new BST();
 
         System.out.println("Enter a series of numbers separated by spaces:");
         String input = scanner.nextLine();
@@ -19,9 +20,11 @@ public class Main {
             avl.insert(Integer.parseInt(number));
         }
 
-        JSONObject json = avl.toJson(avl.getRoot());
-        System.out.println(json.toJSONString());
+        JSONObject avljson = avl.toJson(avl.getRoot());
+        System.out.println(avljson.toJSONString());
 
+        JSONObject bstjson = bst.toJson(avl.getRoot());
+        System.out.println(bstjson.toJSONString());
 
     }}
 

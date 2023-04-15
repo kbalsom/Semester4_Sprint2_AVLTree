@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import org.json.simple.JSONObject;
 
+
+
 public class Main {
 
 
@@ -20,13 +22,31 @@ public class Main {
             avl.insert(Integer.parseInt(number));
         }
 
-        JSONObject avljson = avl.toJson(avl.getRoot());
-        System.out.println(avljson.toJSONString());
+        String[] bnumbers = input.split(" ");
+        for (String number : bnumbers) {
+            bst.insert(Integer.parseInt(number));
+        }
 
-        JSONObject bstjson = bst.toJson(avl.getRoot());
-        System.out.println(bstjson.toJSONString());
+        System.out.println(Arrays.toString(bnumbers));
+
+        String json = avl.getJSONRepresentation();
+        System.out.println(json);
+
+        String bstjson = bst.getJSONRepresentation();
+        System.out.println(bstjson);
+
+//
+//        JSONObject avljson = avl.toJson(avl.getRoot());
+//
+//        System.out.println(avl.getRoot());
+////        System.out.println(avljson.toJSONString());
+//
+////        JSONObject bstjson = bst.toJson(avl.getRoot());
+////        System.out.println(bstjson.toJSONString());
 
     }}
+
+
 
 
 

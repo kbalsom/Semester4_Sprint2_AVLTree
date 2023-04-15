@@ -1,5 +1,7 @@
 package keyin.org;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
 
 public class AVL extends BST {
@@ -172,18 +174,25 @@ public class AVL extends BST {
         }
     }
 
-    public JSONObject toJson(Node node) {
-        if (node == null) {
-            return null;
-        }
+//    public JSONObject toJson(Node node) {
+//        if (node == null) {
+//            return null;
+//        }
+//
+//        JSONObject json = new JSONObject();
+//        json.put("value", node.key);
+//
+//        json.put("left", toJson(node.left));
+//        json.put("right", toJson(node.right));
+//
+//        return json;
+//    }
 
-        JSONObject json = new JSONObject();
-        json.put("value", node.key);
-
-        json.put("left", toJson(node.left));
-        json.put("right", toJson(node.right));
-
-        return json;
+    public String getJSONRepresentation() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        return gson.toJson(this.root);
     }
 
 }

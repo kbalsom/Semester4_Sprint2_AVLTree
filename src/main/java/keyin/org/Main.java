@@ -17,23 +17,24 @@ public class Main {
         System.out.println("Enter a series of numbers separated by spaces:");
         String input = scanner.nextLine();
 
+//        String[] numbers = input.split(" ");
+//        for (String number : numbers) {
+//            bst.insert(Integer.parseInt(number));
+//        }
+
         String[] numbers = input.split(" ");
         for (String number : numbers) {
-            avl.insert(Integer.parseInt(number));
+            int n = Integer.parseInt(number);
+            avl.insert(n);
+            bst.insert(n);
         }
 
-        String[] bnumbers = input.split(" ");
-        for (String number : bnumbers) {
-            bst.insert(Integer.parseInt(number));
-        }
-
-        System.out.println(Arrays.toString(bnumbers));
 
         String json = avl.getJSONRepresentation();
-        System.out.println(json);
+        System.out.println("AVL TREE: " + json);
 
         String bstjson = bst.getJSONRepresentation();
-        System.out.println(bstjson);
+        System.out.println("BST TREE: " + bstjson);
 
 //
 //        JSONObject avljson = avl.toJson(avl.getRoot());

@@ -2,9 +2,8 @@ package keyin.org;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import keyin.org.JSONWriter;
 import org.json.simple.JSONObject;
-
-
 
 public class Main {
 
@@ -17,10 +16,6 @@ public class Main {
         System.out.println("Enter a series of numbers separated by spaces:");
         String input = scanner.nextLine();
 
-//        String[] numbers = input.split(" ");
-//        for (String number : numbers) {
-//            bst.insert(Integer.parseInt(number));
-//        }
 
         String[] numbers = input.split(" ");
         for (String number : numbers) {
@@ -29,21 +24,15 @@ public class Main {
             bst.insert(n);
         }
 
-
-        String json = avl.getJSONRepresentation();
-        System.out.println("AVL TREE: " + json);
+        String avljson = avl.getJSONRepresentation();
+        System.out.println("AVL TREE: " + avljson);
 
         String bstjson = bst.getJSONRepresentation();
         System.out.println("BST TREE: " + bstjson);
 
-//
-//        JSONObject avljson = avl.toJson(avl.getRoot());
-//
-//        System.out.println(avl.getRoot());
-////        System.out.println(avljson.toJSONString());
-//
-////        JSONObject bstjson = bst.toJson(avl.getRoot());
-////        System.out.println(bstjson.toJSONString());
+        JSONWriter jsonWriter = new JSONWriter("src/main/java/keyin/org/avlfile.json", "src/main/java/keyin/org/bstfile.json");
+        jsonWriter.writeAVL(avljson);
+        jsonWriter.writeBST(bstjson);
 
     }}
 

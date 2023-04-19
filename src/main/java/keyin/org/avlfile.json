@@ -1,0 +1,36 @@
+{
+  "key": 4,
+  "left": {
+    "key": 3,
+    "left": {
+      "key": 3,
+      "height": 0
+    },
+    "right": {
+      "key": 4,
+      "left": {
+        "key": 4,
+        "height": 0
+      },
+      "height": 0
+    },
+    "height": 2
+  },
+  "right": {
+    "key": 5,
+    "left": {
+      "key": 5,
+      "height": 0
+    },
+    "right": {
+      "key": 6,
+      "left": {
+        "key": 6,
+        "height": 0
+      },
+      "height": 0
+    },
+    "height": 1
+  },
+  "height": 3
+},

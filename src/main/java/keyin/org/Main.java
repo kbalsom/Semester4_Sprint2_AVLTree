@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 
 public class Main {
 
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AVL avl = new AVL();

@@ -17,13 +17,13 @@ public class BST {
         this.root = insert(root, key);
     }
 
-    public Node insert(Node root, int key) {
+    private Node insert(Node root, int key) {
         if (root == null) {
             root = new Node(key);
             return root;
-        } else if (root.key >= key) {
+        } else if (key < root.key) {
             root.left = insert(root.left, key);
-        } else {
+        } else if (key > root.key) {
             root.right = insert(root.right, key);
         }
         return root;
@@ -46,30 +46,34 @@ public class BST {
         if (root == null) {
             return null;
         }
+
         if (key < root.key) {
             root.left = deleteNode(root.left, key);
-            return root;
         } else if (key > root.key) {
             root.right = deleteNode(root.right, key);
+        } else {
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+
+            Node temp = findMinNode(root.right);
+            root.key = temp.key;
+            root.right = deleteNode(root.right, temp.key);
+        }
+
+        return root;
+    }
+
+    public Node findMinNode(Node root) {
+        if (root.left == null) {
             return root;
         } else {
-            if (root.left == null && root.right == null){
-                root = null;
-                return root;
-            }
-            if (root.left == null) {
-                root = root.right;
-                return root;
-            } else if (root.right == null) {
-                root = root.left;
-                return root;
-            }
-            int aux = this.findMinData(root.right);
-            root.key = aux;
-            root.right = this.deleteNode(root.right,aux);
-            return root;
+            return findMinNode(root.left);
         }
     }
+
 
     public int findMaxData(Node root) {
         if (root.right != null) {
@@ -125,19 +129,6 @@ public class BST {
         return search(root.right, value);
     }
 
-//    public JSONObject toJson(Node node) {
-//        if (node == null) {
-//            return null;
-//        }
-//
-//        JSONObject json = new JSONObject();
-//        json.put("value", node.key);
-//
-//        json.put("left", toJson(node.left));
-//        json.put("right", toJson(node.right));
-//
-//        return json;
-//    }
 
     public String getJSONRepresentation() {
         GsonBuilder gsonBuilder = new GsonBuilder();

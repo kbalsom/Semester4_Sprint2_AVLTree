@@ -2,7 +2,7 @@ package keyin.org;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.json.simple.JSONObject;
+
 
 public class AVL extends BST {
 
@@ -17,7 +17,7 @@ public class AVL extends BST {
         super();
     }
 
-    private int getNodeHeight(Node node){
+    int getNodeHeight(Node node){
         if(node == null){
             return -1;
         }
@@ -25,22 +25,35 @@ public class AVL extends BST {
                 1;
     }
 
+    public Node getNode(int key) {
+        Node current = root;
+        while (current != null) {
+            if (key == current.getKey()) {
+                return current;
+            } else if (key < current.getKey()) {
+                current = current.getLeft();
+            } else {
+                current = current.getRight();
+            }
+        }
+        return null;
+    }
 
-    private Node rotateLeftLeft(Node node){
+    Node rotateLeftLeft(Node node){
         Node temp = node.left;
         node.left = temp.right;
         temp.right = node;
         return temp;
     }
 
-    private Node rotateRightRight(Node node){
+    Node rotateRightRight(Node node){
         Node temp = node.right;
         node.right = temp.left;
         temp.left = node;
         return temp;
     }
 
-    private Node rotateLeftRight(Node node){
+    Node rotateLeftRight(Node node){
         node.left = this.rotateRightRight(node.left);
         return this.rotateLeftLeft(node);
     }
@@ -95,7 +108,7 @@ public class AVL extends BST {
     }
 
 
-    private int getBalanceFactor(Node node) {
+    int getBalanceFactor(Node node) {
         if (node == null) {
             return 0;
         }
@@ -166,28 +179,6 @@ public class AVL extends BST {
         return root;
     }
 
-    public void printInOrder(Node node) {
-        if (node != null) {
-            printInOrder(node.left);
-            System.out.print(node.key + " ");
-            printInOrder(node.right);
-        }
-    }
-
-//    public JSONObject toJson(Node node) {
-//        if (node == null) {
-//            return null;
-//        }
-//
-//        JSONObject json = new JSONObject();
-//        json.put("value", node.key);
-//
-//        json.put("left", toJson(node.left));
-//        json.put("right", toJson(node.right));
-//
-//        return json;
-//    }
-
     public String getJSONRepresentation() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
@@ -196,3 +187,5 @@ public class AVL extends BST {
     }
 
 }
+
+

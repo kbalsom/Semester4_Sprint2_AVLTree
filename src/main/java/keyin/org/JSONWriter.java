@@ -17,7 +17,7 @@ public class JSONWriter {
     }
 
     public void writeAVL(String treeobj) {
-        try (FileWriter file = new FileWriter(avlFilePath, false)) {
+        try (FileWriter file = new FileWriter(avlFilePath, true)) {
             file.write(treeobj + ",\n");
             file.flush();
         } catch (IOException e) {
@@ -26,7 +26,7 @@ public class JSONWriter {
     }
 
     public void writeBST(String treeobj) {
-        try (FileWriter file = new FileWriter(bstFilePath, false)) {
+        try (FileWriter file = new FileWriter(bstFilePath, true)) {
             file.write(treeobj + ",\n");
             file.flush();
         } catch (IOException e) {

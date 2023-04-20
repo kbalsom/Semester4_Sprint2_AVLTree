@@ -1,20 +1,21 @@
+
 {
-  "key": 2,
+  "key": 23,
   "left": {
-    "key": 1,
-    "height": 0
-  },
-  "right": {
-    "key": 4,
+    "key": 3,
     "left": {
-      "key": 3,
+      "key": 2,
       "height": 0
     },
     "right": {
-      "key": 5,
+      "key": 7,
       "height": 0
     },
     "height": 1
+  },
+  "right": {
+    "key": 45,
+    "height": 0
   },
   "height": 2
 },

@@ -1,10 +1,8 @@
 package keyin.org;
-
-import java.util.Arrays;
 import java.util.Scanner;
-import keyin.org.JSONWriter;
-import org.json.simple.JSONObject;
 
+
+//Creates the Main Class:
 public class Main {
 
     public static void main(String[] args) {

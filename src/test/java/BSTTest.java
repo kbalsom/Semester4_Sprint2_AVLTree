@@ -87,7 +87,7 @@ public class BSTTest {
         bst.insert(8);
         bst.insert(6);
         bst.insert(9);
-        bst.inorder(bst.root);
+        bst.inOrder(bst.root);
     }
 
     @Test

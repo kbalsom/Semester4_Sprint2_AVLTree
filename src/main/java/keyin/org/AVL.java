@@ -1,22 +1,25 @@
 package keyin.org;
 
+//Imports Gson:
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
+//Creates public class AVL, extends BST class
 public class AVL extends BST {
 
-
+    //Sets up variables:
     private final int UNBALANCED_RIGHT = -2;
     private final int SLIGHTLY_UNBALANCED_RIGHT = -1;
     private final int UNBALANCED_LEFT = 2;
     private final int SLIGHTLY_UNBALANCED_LEFT = 1;
     private final int BALANCED = 0;
 
+    //Public constructor AVL, which uses super to send variables to BST class:
     public AVL(){
         super();
     }
 
+    //getNodeHeight method:
     int getNodeHeight(Node node){
         if(node == null){
             return -1;
@@ -25,6 +28,7 @@ public class AVL extends BST {
                 1;
     }
 
+    //getNode Method:
     public Node getNode(int key) {
         Node current = root;
         while (current != null) {
@@ -39,36 +43,42 @@ public class AVL extends BST {
         return null;
     }
 
-    Node rotateLeftLeft(Node node){
+    //rotateLeftLeft Method
+    public Node rotateLeftLeft(Node node){
         Node temp = node.left;
         node.left = temp.right;
         temp.right = node;
         return temp;
     }
 
-    Node rotateRightRight(Node node){
+    //rotateRightRight Method:
+    public Node rotateRightRight(Node node){
         Node temp = node.right;
         node.right = temp.left;
         temp.left = node;
         return temp;
     }
 
-    Node rotateLeftRight(Node node){
+    //rotateLeftRight Method:
+    public Node rotateLeftRight(Node node){
         node.left = this.rotateRightRight(node.left);
         return this.rotateLeftLeft(node);
     }
 
-    private Node rotateRightLeft(Node node){
+    //rotateRightLeft Method:
+    public Node rotateRightLeft(Node node){
         node.right = this.rotateLeftLeft(node.right);
         return this.rotateRightRight(node);
     }
 
+    //insert Method:
     @Override
     public void insert(int key){
         this.root = insertNodeAvl(root,key);
         System.out.println("Inserted element: " + key);
         }
 
+        //insertNodeAvl Method
     public Node insertNodeAvl(Node node, int key) {
         if (node == null) {
             return new Node(key);
@@ -81,13 +91,10 @@ public class AVL extends BST {
             return node;
         }
 
-        // Update height of current node
         node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
 
-        // Check if node is balanced
         int balanceFactor = getBalanceFactor(node);
 
-        // Perform necessary rotations to balance tree
         if (balanceFactor > 1 && key < node.left.key) {
             return rotateRight(node);
         }
@@ -102,12 +109,11 @@ public class AVL extends BST {
             node.right = rotateRight(node.right);
             return rotateLeft(node);
         }
-
-        // Return balanced node
         return node;
     }
 
 
+    //getBalanceFactor Method:
     int getBalanceFactor(Node node) {
         if (node == null) {
             return 0;
@@ -115,6 +121,7 @@ public class AVL extends BST {
         return getHeight(node.left) - getHeight(node.right);
     }
 
+    //rotateRight Method
     private Node rotateRight(Node node) {
         Node left = node.left;
         Node rightOfLeft = left.right;
@@ -131,6 +138,7 @@ public class AVL extends BST {
         return left;
     }
 
+    //rotateLeft Method:
     private Node rotateLeft(Node node) {
         Node right = node.right;
         Node leftOfRight = right.left;
@@ -147,7 +155,7 @@ public class AVL extends BST {
         return right;
     }
 
-
+    //removeNodeAVL Method:
     public Node removeNodeAVL(Node root, int key){
         root = super.deleteNode(root,key);
         if (root == null){
@@ -175,10 +183,12 @@ public class AVL extends BST {
         return root;
     }
 
+    //getRoot Method:
     public Node getRoot() {
         return root;
     }
 
+    //getJSONRepresentation Method:
     public String getJSONRepresentation() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
